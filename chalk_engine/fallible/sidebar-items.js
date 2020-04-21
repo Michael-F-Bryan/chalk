@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["NoSolution","Indicates that the attempted operation has \"no solution\" -- i.e., cannot be performed."]],"type":[["Fallible","Many of our internal operations (e.g., unification) are an attempt to perform some operation which may not complete."]]});

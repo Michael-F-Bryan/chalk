@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["add_builtin_program_clauses","For well known traits we have special hard-coded impls, either as an optimization or to enforce special rules for correctness."]],"mod":[["clone",""],["copy",""],["sized",""]]});

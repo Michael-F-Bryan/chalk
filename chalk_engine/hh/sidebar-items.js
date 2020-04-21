@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["HhGoal","A general goal; this is the full range of questions you can pose to Chalk."]]});

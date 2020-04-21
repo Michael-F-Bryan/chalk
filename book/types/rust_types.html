@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Rust types - </title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../what_is_chalk.html"><strong aria-hidden="true">1.</strong> What is Chalk?</a></li><li><ol class="section"><li class="expanded "><a href="../what_is_chalk/crates.html"><strong aria-hidden="true">1.1.</strong> Crates</a></li><li class="expanded "><a href="../what_is_chalk/repl.html"><strong aria-hidden="true">1.2.</strong> REPL</a></li></ol></li><li class="expanded "><a href="../contribution_guide.html"><strong aria-hidden="true">2.</strong> Contribution guide</a></li><li class="expanded "><a href="../types.html"><strong aria-hidden="true">3.</strong> Representing and manipulating types</a></li><li><ol class="section"><li class="expanded "><a href="../types/role_of_interner.html"><strong aria-hidden="true">3.1.</strong> The Interner</a></li><li class="expanded "><a href="../types/rust_types.html" class="active"><strong aria-hidden="true">3.2.</strong> Rust types</a></li><li><ol class="section"><li class="expanded "><a href="../types/rust_types/application_ty.html"><strong aria-hidden="true">3.2.1.</strong> Application types</a></li></ol></li><li class="expanded "><a href="../types/rust_lifetimes.html"><strong aria-hidden="true">3.3.</strong> Rust lifetimes</a></li><li class="expanded "><a href="../types/operations.html"><strong aria-hidden="true">3.4.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../types/operations/fold.html"><strong aria-hidden="true">3.4.1.</strong> Fold and the Folder trait</a></li></ol></li></ol></li><li class="expanded "><a href="../clauses.html"><strong aria-hidden="true">4.</strong> Lowering Rust IR to logic</a></li><li><ol class="section"><li class="expanded "><a href="../clauses/goals_and_clauses.html"><strong aria-hidden="true">4.1.</strong> Goals and clauses</a></li><li class="expanded "><a href="../clauses/type_equality.html"><strong aria-hidden="true">4.2.</strong> Type equality and unification</a></li><li class="expanded "><a href="../clauses/implied_bounds.html"><strong aria-hidden="true">4.3.</strong> Implied bounds</a></li><li class="expanded "><a href="../clauses/lowering_rules.html"><strong aria-hidden="true">4.4.</strong> Lowering rules</a></li><li class="expanded "><a href="../clauses/wf.html"><strong aria-hidden="true">4.5.</strong> Well-formedness checking</a></li></ol></li><li class="expanded "><a href="../canonical_queries.html"><strong aria-hidden="true">5.</strong> Canonical queries</a></li><li><ol class="section"><li class="expanded "><a href="../canonical_queries/canonicalization.html"><strong aria-hidden="true">5.1.</strong> Canonicalization</a></li></ol></li><li class="expanded "><a href="../engine.html"><strong aria-hidden="true">6.</strong> Chalk engine</a></li><li><ol class="section"><li class="expanded "><a href="../engine/major_concepts.html"><strong aria-hidden="true">6.1.</strong> Major concepts</a></li><li class="expanded "><a href="../engine/logic.html"><strong aria-hidden="true">6.2.</strong> Logic</a></li><li><ol class="section"><li class="expanded "><a href="../engine/logic/coinduction.html"><strong aria-hidden="true">6.2.1.</strong> Coinduction</a></li></ol></li><li class="expanded "><a href="../engine/slg.html"><strong aria-hidden="true">6.3.</strong> SLG Solver</a></li><li class="spacer"></li></ol></li><li class="expanded "><a href="../glossary.html">Appendix A: Glossary and terminology</a></li><li class="expanded affix "><a href="../bibliography.html">Appendix B: Bibliography</a></li><li class="expanded affix "><a href="../todo.html">Appendix C: Incomplete chapters</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title"></h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#rust-types" id="rust-types">Rust types</a></h1>
+<p>Rust types are represented by the <a href="http://rust-lang.github.io/chalk/chalk_ir/struct.Ty.html"><code>Ty</code></a> and <a href="http://rust-lang.github.io/chalk/chalk_ir/enum.TyData.html"><code>TyData</code></a> types.
+You use <a href="http://rust-lang.github.io/chalk/chalk_ir/struct.Ty.html"><code>Ty</code></a> to represent &quot;some Rust type&quot;. But to actually inspect
+what sort of type you have, you invoke the <a href="http://rust-lang.github.io/chalk/chalk_ir/struct.Ty.html#method.data"><code>data</code></a> method, which
+returns a <a href="http://rust-lang.github.io/chalk/chalk_ir/enum.TyData.html"><code>TyData</code></a>. As described earlier, the actual in-memory
+representation of types is controlled by the <a href="http://rust-lang.github.io/chalk/chalk_ir/interner/trait.Interner.html"><code>Interner</code></a> trait.</p>
+<h2><a class="header" href="#the-tydata-variants-and-how-they-map-to-rust-syntax" id="the-tydata-variants-and-how-they-map-to-rust-syntax">The <code>TyData</code> variants and how they map to Rust syntax</a></h2>
+<p>This section covers the variants we use to categorize types. We have
+endeavored to create a breakdown that simplifies the Rust &quot;surface
+syntax&quot; of types to their &quot;essence&quot;. In particular, the goal is to
+group together types that are largely treated identically by the
+system and to separate types when there are important semantic
+differences in how they are handled.</p>
+<table><thead><tr><th>Chalk variant</th><th>Example Rust types</th></tr></thead><tbody>
+<tr><td><code>Apply</code></td><td><code>Vec&lt;u32&gt;</code>, <code>f32</code></td></tr>
+<tr><td><code>Placeholder</code></td><td>how we represent <code>T</code> when type checking <code>fn foo&lt;T&gt;() { .. }</code></td></tr>
+<tr><td><code>Dyn</code></td><td><code>dyn Trait</code></td></tr>
+<tr><td><code>Fn</code></td><td><code>fn(&amp;u8)</code></td></tr>
+<tr><td><code>Alias</code></td><td><code>&lt;T as Iterator&gt;::Item</code>, or the <code>Foo</code> in <code>type Foo = impl Trait</code> and <code>type Foo = u32</code></td></tr>
+<tr><td><code>BoundVariable</code></td><td>an uninstantiated generic parameter like the <code>T</code> in <code>struct Foo&lt;T&gt;</code></td></tr>
+</tbody></table>
+<h2><a class="header" href="#justification-for-each-variant" id="justification-for-each-variant">Justification for each variant</a></h2>
+<p>Each variant of <code>TyData</code> generally wraps a single struct, which
+represents a type known to be of that particular variant. This section
+goes through the variants in a bit more detail, and in particular
+describes why each variant exists.</p>
+<h3><a class="header" href="#application-types" id="application-types">Application types</a></h3>
+<p>The <code>Apply</code> variant contains an <code>ApplicationTy</code>. These are kind of the
+&quot;normal Rust types&quot;, like <code>Vec&lt;u32&gt;</code> or <code>f32</code>. They consist of a &quot;type
+name&quot; (in our examples, <code>Vec</code> and <code>f32</code> respecively) and zero or more
+generic arguments (respectively, <code>[u32]</code> and <code>[]</code>).</p>
+<p>They are equal to other types (modulo aliases, see below) iff they
+have the same &quot;type name&quot; and the generic arguments are
+recursively equal</p>
+<h3><a class="header" href="#placeholders" id="placeholders">Placeholders</a></h3>
+<p>The <code>Placeholder</code> variant contains a <code>PlaceholderIndex</code> type. It
+represents a generic type that is being treated abstractly or -- more
+generally -- the result of a &quot;type function&quot; that cannot be
+evaluated. For example, when typing the body of a generic function
+like <code>fn foo&lt;T: Iterator&gt;</code>, the type <code>T</code> would be represented with a
+placeholder. Similarly, in that same function, the associated type
+<code>T::Item</code> might be represented with a placeholder.</p>
+<p>Like application types, placeholder <em>types</em> are only known to be
+equal.</p>
+<p>However, we choose not to represent placeholder types as type names
+because they need to be created during type unification and other
+operations, and hence that would require treating <code>TypeName</code> less opaquely.</p>
+<p>Moreover, when proving negative goals, e.g., <code>not { Implemented(T: Trait) }</code>, placeholders are treated quite differently from application
+types, since they do not (in fact) represent a known type. When
+solving negative goals, placeholderes are replaced with inference
+variables -- the idea is that this goal is only true if there is <em>no
+type</em> <code>T</code> that implements <code>Trait</code>. Therefore, if we can find no
+answeres for <code>exists&lt;T&gt; { Implemented(T: Trait) }</code>, then we know that
+the negation is true. (Note that this means that e.g. <code>forall&lt;X&gt; { X = i32 }</code> is false but so is <code>forall&lt;X&gt; { not { X = i32 } }</code>.)</p>
+<h3><a class="header" href="#inference-variables" id="inference-variables">Inference variables</a></h3>
+<p>The <code>InferenceVar</code> variant wraps an <code>InferenceVar</code> type.  This
+represents a type whose value is being inferred. The value of an
+inference variables may be &quot;known&quot; or &quot;not known&quot;, but that state is
+stored externally, in the inference context (see the section on
+inference below).</p>
+<p>When equating, inference variables are treated specially in that they
+become bound (or, if they have already been bound, they are replaced
+with their value).</p>
+<p>Inference variables are also integral to canonicalization and
+other types.</p>
+<h3><a class="header" href="#dyn-types" id="dyn-types">Dyn types</a></h3>
+<p>The <code>Dyn</code> variant wraps a <code>DynTy</code> and represents a <code>dyn Trait</code>
+type. In chalk, these are represented as an existential type where we
+store the predicates that are known to be true. So a type like <code>dyn Write</code> would be represented as, effectively, an <code>exists&lt;T&gt; { T: Write }</code> type.</p>
+<p>When equating, two <code>dyn P</code> and <code>dyn Q</code> types are equal if <code>P = Q</code> --
+i.e., they have the same bounds. Note that -- for this purpose --
+ordering of bounds is significant. That means that if you create a
+<code>dyn Foo + Send</code> and a <code>dyn Send + Foo</code>, chalk would consider them
+distinct types. The assumption is that bounds are ordered in some
+canonical fashion somewhere else. This may want to change.</p>
+<p>There are &quot;automatic&quot; rules for proving that <code>dyn P: P</code> and so forth, but
+that is outside the scope of the chalk-ir crate.</p>
+<h3><a class="header" href="#function-pointer-types" id="function-pointer-types">Function pointer types</a></h3>
+<p>The <code>Fn</code> variant wraps a <code>FnTy</code> struct and represents a <code>fn()</code> type
+(in other words, a function pointer). In some ways, fn types are like
+application types, but with one crucial difference: they also contain
+a <code>forall</code> binder that for lifetimes whose value is determined when
+the function is called. Consider e.g. a type like <code>fn(&amp;u32)</code> or --
+more explicitly -- <code>for&lt;'a&gt; fn(&amp;'a u32)</code>.</p>
+<p>Two <code>Fn</code> types <code>A, B</code> are equal <code>A = B</code> if <code>A &lt;: B</code> and <code>B &lt;: A</code></p>
+<p>Two <code>Fn</code> types <code>A, B</code> are subtypes <code>A &lt;: B</code> if</p>
+<ul>
+<li>After instantiating the lifetime parameters on <code>B</code> universally...
+<ul>
+<li>You can instantiate the lifetime parameters on <code>A</code> existentially...
+<ul>
+<li>And then you find that <code>P_B &lt;: P_A</code> for every parameter type <code>P</code> on <code>A</code> and <code>B</code> and
+<code>R_A &lt;: R_B</code> for the return type <code>R</code> of <code>A</code> and <code>B</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>We currently handle type inference with a bit of a hack (same as
+rustc); when relating a <code>Fn</code> type <code>F</code> to an unbounded type
+variable <code>V</code>, we instantiate <code>V</code> with <code>F</code>.  But in practice
+because of the above subtyping rules there are actually a range of
+values that <code>V</code> could have and still be equal with <code>F</code>. This may
+or may not be something to consider revisiting.</p>
+<h3><a class="header" href="#generator-witness-types" id="generator-witness-types">Generator witness types</a></h3>
+<p>The <code>GeneratorWitness</code> variant wraps a <code>GeneratorWitness</code> type.  These
+witnesses represent the types that may be part of a generator
+state. Unlike other types, witnesses include bound, existential
+lifetimes, which refer to lifetimes within the suspended stack frame.
+You can think of it as a type like <code>exists&lt;'a&gt; { (T...) }</code>.</p>
+<p>Witnesses are very similar to an <code>Apply</code> type, but it has a binder for
+the erased lifetime(s), which must be handled specifically in equating
+and so forth. In many ways, witnesses are also quite similar to <code>Fn</code>
+types, and it is not out of the question that these two could be
+unified; however, they are quite distinct semantically and so that
+would be an annoying mismatch in other parts of the system.
+Witnesses are also similar to a <code>Dyn</code> type, in that they represent an
+existential type, but in contrast to <code>Dyn</code>, what we know here is
+not a <em>predicate</em> but rather some upper bound on the set of types
+contained within.</p>
+<h3><a class="header" href="#alias-types" id="alias-types">Alias types</a></h3>
+<p>The <code>Alias</code> variant wraps an <code>AliasTy</code> and is used to represent some form of <em>type
+alias</em>. These correspond to associated type projections like <code>&lt;T as Iterator&gt;::Item</code>
+but also <code>impl Trait</code> types and named type aliases like <code>type Foo&lt;X&gt; = Vec&lt;X&gt;</code>.</p>
+<p>Each alias has an alias id as well as parameters. Aliases effectively
+represent a <em>type function</em>.</p>
+<p>Aliases are quite special when equating types. In general, an alias
+type <code>A</code> can also be equal to <em>any other type</em> <code>T</code> (<code>AliasEq</code>) if evaluating the
+alias <code>A</code> yields <code>T</code>.</p>
+<p>However, some alias types can also be instantiated as &quot;alias
+placeholders&quot;. This occurs when the precise type of the alias is not
+known, but we know that there is <em>some type</em> that it evaluates to (for
+example, <code>&lt;T as Iterator&gt;::Item</code> might be treated opaquely as
+<code>T::Item</code>; similarly <code>impl Trait</code> types are treated opaquely until the
+latter phases of the compiler). Alias placeholders are not represented
+with the <code>Alias</code> variant, but rather with the placeholder variant
+described previously.</p>
+<h3><a class="header" href="#bound-variables" id="bound-variables">Bound variables</a></h3>
+<p>The <code>BoundVariable</code> variant represents some variable that is bound in
+an outer term. For example, given a term like <code>forall&lt;X&gt; { Implemented(X: Trait) }</code>, the <code>X</code> is bound. Bound variables in chalk
+(like rustc) use de bruijin indices (See below).</p>
+<p>Bound variables are never directly equated, as any bound variables would have
+been instantiated with either inference variables or placeholders.</p>
+<p>They do appear in canonical forms and other terms that contain binders.</p>
+<h3><a class="header" href="#error-types" id="error-types">Error types</a></h3>
+<p>The <code>Error</code> variant represents a type that resulted from some
+erroneous expression. Error types generally propagate eagerly in an
+attempt to suppress nonsense errors that are derived by interactions
+with buggy code.</p>
+<p><code>Error</code> should be its own variant because most bits of code will want
+to handle it somewhat specially -- e.g., maybe it can &quot;unify&quot; with any
+other type without any effect, and so forth.</p>
+<h2><a class="header" href="#mapping-to-rustc-types" id="mapping-to-rustc-types">Mapping to rustc types</a></h2>
+<p>The rustc <a href="https://doc.rust-lang.org/nightly/nightly-rustc/rustc_middle/ty/enum.TyKind.html"><code>TyKind</code></a> enum has a lot more variants than chalk. This
+section describes how the rustc types can be mapped to chalk
+types. The intention is that, at least when transitioning, rustc would
+implement the <code>Interner</code> trait and would map from the <a href="https://doc.rust-lang.org/nightly/nightly-rustc/rustc_middle/ty/enum.TyKind.html"><code>TyKind</code></a>
+enum to chalk's <code>TyData</code> on the fly, when <code>data()</code> is invoked.</p>
+<p>This section describes how each of rustc's variants can be mapped to
+Chalk variants.</p>
+<table><thead><tr><th>rustc type</th><th>chalk variant (and some notes)</th></tr></thead><tbody>
+<tr><td><code>Bool</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Char</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Int(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Uint(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Float(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Adt(_, _)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Foreign(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Str</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Array(_, _)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Slice(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>RawPtr(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Ref(_, _, _)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>FnDef(_, _)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>FnPtr(_, _)</code></td><td><code>Fn</code></td></tr>
+<tr><td><code>Dynamic(_, _)</code></td><td><code>Dyn</code></td></tr>
+<tr><td><code>Closure(_, _)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Generator(_, _)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>GeneratorWitness(_)</code></td><td><code>GeneratorWitness</code></td></tr>
+<tr><td><code>Never</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Tuple(_)</code></td><td><code>Apply</code></td></tr>
+<tr><td><code>Projection(_)</code></td><td><code>Alias</code></td></tr>
+<tr><td><code>UnnormalizedProjection(_)</code></td><td>(see below)</td></tr>
+<tr><td><code>Opaque(_, _)</code></td><td><code>Alias</code></td></tr>
+<tr><td><code>Param(_)</code></td><td>XXX Placeholder?</td></tr>
+<tr><td><code>Bound(_, _)</code></td><td><code>BoundVariable</code></td></tr>
+<tr><td><code>Placeholder(_)</code></td><td><code>Placeholder</code></td></tr>
+<tr><td><code>Infer(_)</code></td><td><code>InferenceVar</code></td></tr>
+<tr><td><code>Error</code></td><td><code>Error</code></td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../types/role_of_interner.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../types/rust_types/application_ty.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../types/role_of_interner.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../types/rust_types/application_ty.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

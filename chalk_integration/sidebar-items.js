@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["TypeSort",""]],"mod":[["db",""],["error",""],["lowering",""],["program",""],["program_environment",""],["query",""]],"struct":[["RawId",""],["TypeKind",""],["Unit",""]],"type":[["Identifier",""]]});

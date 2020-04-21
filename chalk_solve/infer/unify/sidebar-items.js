@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["OccursCheck",""],["UnificationResult",""],["Unifier",""]]});
